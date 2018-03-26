@@ -24,7 +24,25 @@ var data = [
     continent: 'Africa',
     capital: 'Praia',
     description: 'Interested in going there.'
-  }
+  },
+  {
+  name: 'United States',
+  continent: 'America',
+  capital: 'New York',
+  description: 'Ive been there.',
+  },
+  {
+  name: 'Zadar',
+  continent: 'Europe',
+  capital: 'Croatia',
+  description: 'Ive been there.'
+  },
+  {
+    name: 'Berlin',
+    continent: 'Europe',
+    capital: 'Croatia',
+    description: 'Ive been there.'
+    },
 ]
 
 express()
@@ -33,15 +51,26 @@ express()
   .use(express.static('static'))
   .get('/', all)
   .get('/:index', get)
+  .get('/0', detail)
   .listen(port)
+   //.get is not a function this is weird i cant figure out why this is not working...
+ 
+ function detail(res,req){
+ res.render('detail.ejs', {data: data})
+}
+  
+
+  
+
+  
 
 // Get all countries (related to step 3).
+// removed the title seems like the only fix to get the weird error out of the way.
+// it now should render the data object
 function all(req, res) {
-  res.render('list.ejs', {
-    title: 'Countries',
-    data: data
-  })
+  res.render('list.ejs', {data: data})
 }
+
 
 // Get one country (step 4, todo: finish).
 function get(req, res) {
