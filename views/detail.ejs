@@ -1,0 +1,23 @@
+<%- include('head.ejs') %>
+
+<h1>Country: <%= data.name %></h1>
+
+<p><a href="/">Back to list</a></p>
+
+<img
+  src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDloFLu8T79Yfpaa5acNzRmj88C2PiN9QU&center=<%= data.name %>,<%= data.capital %>&size=1200x500&zoom=5&scale=2"
+  alt="<%= data.name %> on a map"
+>
+
+<dl>
+  <dt>Continent</dt>
+  <dd><%= data.continent %></dd>
+  <dt>Capital</dt>
+  <dd><%= data.capital %></dd>
+</dl>
+
+<p><%= data.description %></p>
+
+<button id="remove" class="danger">Remove country</button>
+
+<%- include('tail.ejs') %>

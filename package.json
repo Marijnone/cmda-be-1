@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "cmda-be-a1",
+  "version": "1.0.0",
+  "description": "An incomplete express server: can you finish it?",
+  "license": "MIT",
+  "repository": null,
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "ejs": "^2.3.4",
+    "express": "^4.13.3"
+  },
+  "scripts": {
+    "start": "node ."
+  }
+}

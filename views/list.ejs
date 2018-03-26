@@ -1,0 +1,21 @@
+<%- include('head.ejs') %>
+
+<h1>Countries</h1>
+
+<% if (typeof data !== undefined && data.length !== 0) { %>
+  <table>
+    <caption>Some places I’ve been or would like to go.</caption>
+    <tr>
+      <th>Name</th>
+      <th>Continent</th>
+      <th>Capital</th>
+    </tr>
+    <!-- Step 3: Templates -->
+  </table>
+<% } else { %>
+  <p>No countries yet.</p>
+<% } %>
+
+<p><a href="/add">Add a country</a></p>
+
+<%- include('tail.ejs') %>
