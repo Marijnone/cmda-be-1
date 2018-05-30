@@ -16,7 +16,7 @@
             <% data.forEach(function (data){ %>)
           <tr>
             <!-- i tried making a link to /0 and make the server respond to that did not worked. Rendering the data worked out :) -->
-            <td> <a href="/0"><%= data.name %> </a> </td> 
+            <td> <a href="/<%= data.id %>"><%= data.name %> </a> </td> 
             <td><%= data.continent %> </td>
             <td><%= data.capital %> </td>
           </tr>
