@@ -1,0 +1,25 @@
+<% include head.ejs %>
+  <title>Add a movie - My movie website</title>
+  <h1>Add a new movie</h1>
+  <form action=/ method=post>
+    <label>Title
+      <input name=name>
+    </label>
+    <label>
+      continent
+      <input name=continent>
+    </label>
+    <label>
+      country
+      <textarea name=country rows=1></textarea>
+    </label>
+    <label>
+      capital
+      <textarea name=capital rows=1></textarea>
+      <label>
+        Description (long)
+        <textarea name=description rows=2></textarea>
+
+        <button>Add</button>
+  </form>
+  <%- include('tail.ejs') %>

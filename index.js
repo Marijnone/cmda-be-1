@@ -1,6 +1,8 @@
 'use strict'
 var find = require('array-find')
 var express = require('express')
+var slug = require('slug')
+var bodyParser = require('body-parser')
 
 // Port to start web server on.
 var port = 1904
@@ -9,9 +11,8 @@ var port = 1904
 
 
 // List of countries (related to step 2).
-var data = [
-  {
-    id: "0" ,
+var data = [{
+    id: "0",
     name: 'The Netherlands',
     continent: 'Europe',
     capital: 'Amsterdam',
@@ -55,71 +56,88 @@ var data = [
 ]
 
 var app = express()
+app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 app.set('views', 'views')
 app.use(express.static('static'))
 app.get('/', all)
 app.get('/:index', get)
 app.get('/:id', get)
+app.delete('/:id', remove) //remove works due to pre writtin client side script
+app.post('/', add)
+app.get('/add',form)
 app.listen(1904, onServerStart) //starts the server
-
-//.get is not a function this is weird i cant figure out why this is not working... ah moved it above the listen function
-//try to render the page with the data:data i was trying to find the method to bind it with req.params to use te right id
-function detail(req, res) {
-  res.render('detail.ejs', { data: id })
-
-
-}
-
-
-
-
 
 
 // Get all countries (related to step 3).
 // removed the title seems like the only fix to get the weird error out of the way.
 // it now should render the data object
 function all(req, res) {
-  res.render('list.ejs', { data: data })
+  res.render('list.ejs', {
+    data: data
+  })
+}
+
+function form(req, res) {
+  res.render('form1.ejs')
 }
 
 function add(req, res) {
-
-}
-
-
-// Get one country (step 4, todo: finish).
-function get(req, res, next ) {
- 
-  
-    var id = req.params.id
-    var country = find(data, function (value) {
-      return value.id === id
-    })
-  
-    if (!country) {
-      next()
-      return
-    }
-    // console.log(id);
-    console.log(data,id);
-    
-    res.render('detail.ejs', {data: country}) //add the right data to the template
+  var newCountry = {
+    id:req.body.id,
+    name:req.body.name,
+    continent:req.body.continent,
+    capital:req.body.capital,
+    description:req.body.description
   }
 
+  data.push(newCountry)
+    
+
+  res.redirect('/' + newCountry.id)
+  
+
+}
+// Get one country (step 4, todo: finish).
+function get(req, res, next) {
 
 
-function notFound(req, res) {
-          res.status(404.).render('error.ejs')
-        }
+  var id = req.params.id
+  var country = find(data, function (value) {
+    return value.id === id
+  })
+
+  if (!country) {
+
+    next()
+    res.render('error.ejs')
+    return
+  }
+  res.render('detail.ejs', {
+    data: country
+  }) //add the right data to the template
+}
+
+function remove(req, res) {
+  var id = req.params.id
+
+  data = data.filter(function (value) {
+    return value.id !== id
+  })
+
+  res.json({
+    status: 'ok'
+  })
+  
+}
 
 
 
 function onServerStart() {
-        console.log("🌐  Server started. http://localhost:1904");
-        // console.log(data.length)
-        // console.log(id);
-        
+  console.log("🌐  Server started. http://localhost:1904");
+  console.log();
 
+  // console.log(data.length)
+  // console.log(id);
+}
 
-      }

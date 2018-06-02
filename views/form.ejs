@@ -1,20 +1,24 @@
+<%- include('head.ejs') %>
 <h1>Add a new country</h1>
 <form action=/ method=post>
-    <label>name
-        <input name=name>
-    </label>
-    <label>
-        continnet
-        <input name=continent>
-    </label>
-    <label>
-        capital
-        <textarea name=capital></textarea>
-    </label>
-    <label>
-        description
-        <textarea name=description rows=5></textarea>
-    </label>
-    <button>Add</button>
+    <fieldset>
+    <label for="name">Name</label>
+        <input name=name type="text">
+
+<label for="continent">Continent</label>
+    <input name=continent type="text">
+
+<label for="country">Country</label>
+    <input name=country type="text">  
+    
+
+<label for="capital">Capital</label>
+    <input name=capital type="text"> 
+    
+<label for="description">Description</label>
+    <input name=description type="text">
+</fieldset>
+    <button> Add</button>
 </form>
 
+<%- include('tail.ejs') %>
