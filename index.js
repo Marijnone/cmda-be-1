@@ -83,8 +83,9 @@ function form(req, res) {
 }
 
 function add(req, res) {
+  var id = slug(req.body.title).toLowerCase() 
   var newCountry = {
-    id:req.body.id,
+    id: id,
     name:req.body.name,
     continent:req.body.continent,
     capital:req.body.capital,
@@ -95,8 +96,9 @@ function add(req, res) {
     
 
   res.redirect('/' + newCountry.id)
+  console.log(newCountry);
+  console.log(id);
   
-
 }
 // Get one country (step 4, todo: finish).
 function get(req, res, next) {
@@ -135,7 +137,7 @@ function remove(req, res) {
 
 function onServerStart() {
   console.log("🌐  Server started. http://localhost:1904");
-  console.log();
+
 
   // console.log(data.length)
   // console.log(id);
