@@ -83,7 +83,7 @@ function form(req, res) {
 }
 
 function add(req, res) {
-  var id = slug(req.body.title).toLowerCase() 
+  var id = slug(req.body.name).toLowerCase() 
   var newCountry = {
     id: id,
     name:req.body.name,
